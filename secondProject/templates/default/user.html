@@ -1,0 +1,23 @@
+{{define "default/user.html"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.title}}</title>
+</head>
+<body>
+{{template "public/page_header.html" .}}
+<h2>{{.title}}</h2>
+<form action="/doAddUser2" method="post">
+    <p>用户名:</p><input type="text" name="username"/><br><br>
+    <p>密码:</p><input type="password" name="password"/><br><br>
+    <p>年龄:</p><input type="text" name="age"/><br><br>
+    <input type="submit" value="提交" />
+</form>
+<br>
+<br>
+{{template "public/page_footer.html" .}}
+</body>
+</html>
+{{end}}

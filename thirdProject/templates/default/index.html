@@ -1,0 +1,19 @@
+<!--定义模板-->
+{{define "default/index.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+{{template "public/page_header.html" .}}
+<!--输出数据{{.}}-->
+<h2>{{.title}}</h2>
+<br>
+<p>时间:{{UnixToTime .t}}</p>
+
+{{template "public/page_footer.html" .}}
+</body>
+</html>
+{{end}}

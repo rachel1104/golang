@@ -1,0 +1,76 @@
+<!--定义模板-->
+{{define "default/index.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+{{template "public/page_header.html" .}}
+<!--输出数据{{.}}-->
+<h2>{{.title}}</h2>
+<!--变量-->
+{{$t := .title}}
+<br>
+<h4>{{$t}}</h4>
+{{.score}}
+<!--if判断语句-->
+{{if gt .score 90}}
+<p>优秀</p>
+{{else if gt .score 80}}
+<p>良好</p>
+{{else if gt .score 60}}
+<p>及格</p>
+{{else}}
+<p>不及格</p>
+{{end}}
+<!--循环遍历数据-->
+<ul>
+    {{range $key,$value:=.hobby}}
+    <li>{{$key}}----{{$value}}</li>
+    {{end}}
+</ul>
+
+
+<ul>
+    {{range $key,$value:=.newsList}}
+        <li>{{$key}}----{{$value.Title}}----{{$value.Content}}----{{$value.Desc}}</li>
+    {{end}}
+</ul>
+
+<ul>
+    {{range $key,$value:=.testslice}}
+        <li>{{$key}}----{{$value}}</li>
+    {{else}}
+        <li>没有数据</li>
+    {{end}}
+</ul>
+<!--with 结构体-->
+<p>{{.news.Title}}</p>
+<p>{{.news.Content}}</p>
+<p>{{.news.Desc}}</p>
+
+{{with.news}}
+<p>{{.Title}}</p>
+<p>{{.Content}}</p>
+<p>{{.Desc}}</p>
+{{end}}
+<!--预定义函数 获取标题长度 一个汉字代表3个字符-->
+<br>
+{{len .title}}
+<!--自定义函数-->
+<br>
+{{.date}}
+<br>
+{{UnixToTime .date}}
+<br>
+<br>
+{{Text .title .msg}}
+<img src="/static/images/aaa.png" alt="aaa">
+<br>
+<br>
+{{template "public/page_footer.html" .}}
+</body>
+</html>
+{{end}}
